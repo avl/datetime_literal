@@ -1,0 +1,9 @@
+[package]
+name = "datetime_literal"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+repository = ""
+
+[dependencies]
+chrono="0.4.39"
