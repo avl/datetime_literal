@@ -3,7 +3,7 @@ name = "datetime_literal"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
-repository = ""
+repository = "https://github.com/avl/datetime_literal"
 description = "A macro for creating chrono::DateTime instances."
 keywords = ["literal", "datetime", "macro"]
 
