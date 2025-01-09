@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2024"
 license = "MIT"
 repository = ""
+description = "A macro for creating chrono::DateTime instances."
+keywords = ["literal", "datetime", "macro"]
 
 [dependencies]
 chrono="0.4.39"
