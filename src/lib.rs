@@ -40,28 +40,52 @@
 ///
 #[macro_export] macro_rules! datetime {
     ( $year:literal-$month:literal-$day:literal Z)  => {
-        const { chrono::DateTime::<chrono::Utc>::from_naive_utc_and_offset(
+
+        const {
+            #[allow(clippy::zero_prefixed_literal)]
+            chrono::DateTime::<chrono::Utc>::from_naive_utc_and_offset(
             datetime!($year - $month - $day),
             chrono::Utc
         ) }
     };
     ( $year:literal-$month:literal-$day:literal)  => {
-        const { chrono::NaiveDateTime::new(
+
+        const {
+            #[allow(clippy::zero_prefixed_literal)]
+            chrono::NaiveDateTime::new(
+
             chrono::NaiveDate::from_ymd_opt($year, $month, $day).expect("date values must be in valid range"),
             chrono::NaiveTime::from_hms_opt(0,0,0).unwrap()
         ) }
     };
     ( $year:literal-$month:literal-$day:literal $(T)? $hour:literal:$min:literal:$second:literal Z)  => {
-        const { chrono::DateTime::<chrono::Utc>::from_naive_utc_and_offset(
+
+        const {
+            #[allow(clippy::zero_prefixed_literal)]
+            chrono::DateTime::<chrono::Utc>::from_naive_utc_and_offset(
+
             datetime!($year - $month - $day $hour:$min:$second),
             chrono::Utc
         ) }
     };
     ( $year:literal-$month:literal-$day:literal $(T)? $hour:literal:$min:literal:$second:literal)  => {
-        const { chrono::NaiveDateTime::new(
+
+        const {
+            #[allow(clippy::zero_prefixed_literal)]
+            chrono::NaiveDateTime::new(
             chrono::NaiveDate::from_ymd_opt($year, $month, $day).expect("date values must be in valid range"),
             chrono::NaiveTime::from_hms_opt($hour, $min, $second).expect("time values must be in valid range")
         ) }
     };
 }
 
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn test() {
+        assert_eq!(
+            datetime!(1970-01-01 0:00:00 Z).timestamp(),
+            0
+        );
+    }
+}
